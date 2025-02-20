@@ -1,6 +1,6 @@
 # Computer Vision Application
 
-## Custom object detection-AI
+## Custom object detection AI
 
 ### Machine Learning 
 ### Deep Learning 
