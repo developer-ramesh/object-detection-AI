@@ -4,7 +4,7 @@
 
 ### Machine Learning 
 ### Deep Learning 
-### Automate the traffic police work (Helmet and Box checking)
+### Automate traffic police work for real-time. (Helmet and Box checking)
 <br/>
 
 > [!TIP]
