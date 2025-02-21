@@ -8,8 +8,9 @@ RUN apt-get update
 # Set the working directory inside the container
 WORKDIR /app
 
-
-RUN pip install --no-cache-dir ultralytics flask flask-socketio opencv-python numpy eventlet
+# Copy the requirements file and install Python dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the rest of the application code
 COPY . .
