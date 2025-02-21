@@ -4,7 +4,7 @@
 
 ### Machine Learning 
 ### Deep Learning 
-### Automate traffic police work for real-time. (Helmet and Box checking)
+ ![#1589F0](https://placehold.co/15x15/1589F0/1589F0.png) **Automate traffic police work for real-time. (Helmet and Box checking)**
 <br/>
 
 > [!TIP]
