@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webcam Streaming with Object Detection</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <style>
+        body { text-align: center; font-family: Arial, sans-serif; }
+        video, img { width: 45%; max-width: 500px; border: 2px solid black; border-radius: 10px; margin: 10px; }
+        button { padding: 10px; font-size: 16px; margin-top: 10px; cursor: pointer; }
+        .header { background-color: #333; color: white; padding: 10px; margin-bottom: 20px;}
+    </style>
+</head>
+<body>
+    <div class="header"><h1>Computer vision application!</h1>Real-Time Object Detection (Helmet, Boxes)</div>
+    <video id="webcam" autoplay playsinline></video>
+    <img id="processedVideo" alt="Processed Video" style="display: none;">
+    <br>
+    <button onclick="startWebcam()">Start Webcam</button>
+    <button onclick="stopWebcam()">Stop Webcam</button>
+
+    <script>
+        let videoStream = null;
+        const socket = io("http://localhost:5000");
+        const webcam = document.getElementById("webcam");
+        const processedVideo = document.getElementById("processedVideo");
+
+        function startWebcam() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    videoStream = stream;
+                    webcam.srcObject = stream;
+                    sendFramesToServer();
+                })
+                .catch(err => alert("Webcam access denied!"));
+        }
+
+        function stopWebcam() {
+            if (videoStream) {
+                videoStream.getTracks().forEach(track => track.stop());
+                webcam.srcObject = null;
+            }
+        }
+
+        function sendFramesToServer() {
+            const canvas = document.createElement("canvas");
+            const context = canvas.getContext("2d");
+            canvas.width = 640;
+            canvas.height = 480;
+
+            setInterval(() => {
+                context.drawImage(webcam, 0, 0, canvas.width, canvas.height);
+                let frameData = canvas.toDataURL("image/jpeg");
+                socket.emit("video_frame", frameData);
+            }, 800);
+        }
+
+        socket.on("processed_frame", (data) => {
+            processedVideo.src = data;
+            processedVideo.style.display = "inline";
+        });
+    </script>
+</body>
+</html>
