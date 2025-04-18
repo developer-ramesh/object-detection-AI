@@ -19,6 +19,8 @@
 ##### Helmet detection || Box detection
 [Demo link here](https://www.loom.com/share/3e07d4b2c78e4058bad7905737c41300?sid=f337b4b8-c66b-41f3-b43e-061f6fa59849)
 
+##### <a href="https://capsquery.com/web-development-service/" target="_blank">Web Development</a>
+
 
 
 https://www.loom.com/share/3e07d4b2c78e4058bad7905737c41300?sid=f337b4b8-c66b-41f3-b43e-061f6fa59849
